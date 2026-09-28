@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agência — Agência de Fotografia</title>
+  <meta name="description" content="Agência de fotografia: ensaios, eventos, produtos e direção criativa." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // As cores vêm das variáveis CSS (style.css) para o painel admin poder trocar
+    const cor = v => `rgb(var(--${v}) / <alpha-value>)`;
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      royal: cor('royal'), navy: cor('navy'), periwinkle: cor('periwinkle'), mist: cor('mist'), ice: cor('ice')
+    } } } };
+  </script>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="bg-ice text-navy dark:bg-black dark:text-ice overflow-x-hidden">
+  <div data-glow></div>
+
+  <header class="fixed inset-x-0 top-0 z-50">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
+      <a href="#home" aria-label="Início"><img data-e-src="logo" src="assets/logo.png" alt="Logo" class="h-11 w-11 rounded-xl bg-white p-1 object-contain" /></a>
+      <ul class="hidden md:flex gap-8 text-sm font-medium">
+        <li><a href="#servicos" class="hover:text-periwinkle transition">Serviços</a></li>
+        <li><a href="#equipe" class="hover:text-periwinkle transition">Quem somos</a></li>
+        <li><a href="#portfolio" class="hover:text-periwinkle transition">Portfólio</a></li>
+        <li><a href="#depoimentos" class="hover:text-periwinkle transition">Depoimentos</a></li>
+        <li><a href="#contatos" class="hover:text-periwinkle transition">Contatos</a></li>
+      </ul>
+      <div class="flex items-center gap-2">
+        <button data-theme-toggle aria-label="Alternar tema" class="h-10 w-10 grid place-items-center rounded-full glass hover:scale-110 transition">
+          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i><i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+        </button>
+        <button data-menu-btn aria-label="Menu" class="md:hidden h-10 w-10 grid place-items-center rounded-full glass"><i data-lucide="menu" class="w-5 h-5"></i></button>
+      </div>
+    </nav>
+    <div data-menu class="hidden md:hidden glass mx-4 rounded-2xl p-5">
+      <a href="#servicos" class="block py-2">Serviços</a><a href="#equipe" class="block py-2">Quem somos</a>
+      <a href="#portfolio" class="block py-2">Portfólio</a><a href="#depoimentos" class="block py-2">Depoimentos</a>
+      <a href="#contatos" class="block py-2">Contatos</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <!-- ===== HOME ===== -->
+    <section id="home" class="relative min-h-screen flex items-center">
+      <div data-hero-img class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-royal blur-[140px] opacity-50"></div>
+      <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-periwinkle blur-[140px] opacity-30"></div>
+      <div data-hero class="relative max-w-7xl mx-auto w-full px-5 pt-32 pb-20">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs tracking-widest uppercase mb-8"><span class="h-2 w-2 rounded-full bg-periwinkle animate-pulse"></span> <span data-e="hero_etiqueta">Agenda aberta para novos ensaios</span></span>
+        <h1 class="font-display font-extrabold text-5xl sm:text-7xl lg:text-[7.5rem] leading-[.9]">
+          <span data-e="hero_titulo">Imagens que</span><br /><span data-e="hero_destaque" class="text-royal dark:text-periwinkle">eternizam momentos.</span>
+        </h1>
+        <p data-e="hero_texto" class="mt-8 max-w-xl text-lg opacity-75">Somos uma agência de fotografia que transforma pessoas, marcas e momentos em imagens que ficam na memória.</p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#portfolio" class="px-8 py-4 rounded-full bg-royal hover:bg-periwinkle text-white font-semibold transition hover:scale-105">Ver portfólio →</a>
+          <a href="#contatos" class="px-8 py-4 rounded-full border border-current/30 glass font-semibold transition hover:scale-105">Falar com a gente</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIÇOS (banco: tipo "servico") ===== -->
+    <section id="servicos" class="max-w-7xl mx-auto px-5 py-28">
+      <div data-reveal class="mb-14">
+        <p class="text-periwinkle font-semibold tracking-widest uppercase text-xs mb-4">Serviços</p>
+        <h2 data-e="servicos_titulo" class="font-display font-bold text-4xl sm:text-5xl max-w-2xl">Um olhar para cada momento.</h2>
+      </div>
+      <div data-stagger data-lista="servico" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <template>
+          <div class="glass rounded-3xl p-7 hover-lift"><div class="w-14 h-14 grid place-items-center rounded-2xl bg-royal/10 dark:bg-periwinkle/15"><i data-i-icon class="w-7 h-7 text-royal dark:text-periwinkle"></i></div><h3 data-i="titulo" class="font-display font-bold text-xl mt-6"></h3><p data-i="descricao" class="text-sm opacity-70 mt-2"></p></div>
+        </template>
+        <div class="glass rounded-3xl p-7 hover-lift"><div class="w-14 h-14 grid place-items-center rounded-2xl bg-royal/10 dark:bg-periwinkle/15"><i data-lucide="camera" class="w-7 h-7 text-royal dark:text-periwinkle"></i></div><h3 class="font-display font-bold text-xl mt-6">Ensaios</h3><p class="text-sm opacity-70 mt-2">Individuais, casais e amigos, em estúdio ou externo.</p></div>
+        <div class="glass rounded-3xl p-7 hover-lift"><div class="w-14 h-14 grid place-items-center rounded-2xl bg-royal/10 dark:bg-periwinkle/15"><i data-lucide="party-popper" class="w-7 h-7 text-royal dark:text-periwinkle"></i></div><h3 class="font-display font-bold text-xl mt-6">Eventos</h3><p class="text-sm opacity-70 mt-2">Aniversários, formaturas e festas registrados por completo.</p></div>
+        <div class="glass rounded-3xl p-7 hover-lift"><div class="w-14 h-14 grid place-items-center rounded-2xl bg-royal/10 dark:bg-periwinkle/15"><i data-lucide="shopping-bag" class="w-7 h-7 text-royal dark:text-periwinkle"></i></div><h3 class="font-display font-bold text-xl mt-6">Fotos de Produto</h3><p class="text-sm opacity-70 mt-2">Imagens para lojas, catálogos e e-commerce.</p></div>
+        <div class="glass rounded-3xl p-7 hover-lift"><div class="w-14 h-14 grid place-items-center rounded-2xl bg-royal/10 dark:bg-periwinkle/15"><i data-lucide="sparkles" class="w-7 h-7 text-royal dark:text-periwinkle"></i></div><h3 class="font-display font-bold text-xl mt-6">Edição &amp; Tratamento</h3><p class="text-sm opacity-70 mt-2">Cor, retoque e acabamento profissional.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== EQUIPE (banco: tipo "membro") ===== -->
+    <section id="equipe" class="py-28">
+      <div class="max-w-7xl mx-auto px-5">
+        <div data-reveal class="grid lg:grid-cols-2 gap-10 mb-14">
+          <div>
+            <p class="text-periwinkle font-semibold tracking-widest uppercase text-xs mb-4">Quem somos</p>
+            <h2 data-e="equipe_titulo" class="font-display font-bold text-4xl sm:text-5xl">Dois fotógrafos, um só olhar.</h2>
+          </div>
+          <p data-e="equipe_texto" class="opacity-75 text-lg self-end">Somos dois fotógrafos que nasceram no SENAI unidos pela paixão por fotografia. Cada ensaio é pensado com direção criativa, luz e muito cuidado.</p>
+        </div>
+        <div data-stagger data-lista="membro" class="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <template>
+            <div class="group"><div class="aspect-[4/5] rounded-3xl overflow-hidden"><div data-i-img="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500" class="ph w-full h-full grid place-items-center"><i data-lucide="user-round" class="w-16 h-16 text-mist"></i></div></div><p data-i="titulo" class="font-display font-bold text-xl mt-4"></p><p data-i="subtitulo" class="text-sm opacity-60"></p></div>
+          </template>
+          <div class="group"><div class="ph aspect-[4/5] rounded-3xl grid place-items-center"><i data-lucide="user-round" class="w-16 h-16 text-mist"></i></div><p class="font-display font-bold text-xl mt-4">Ana Laura</p><p class="text-sm opacity-60">Fotógrafa</p></div>
+          <div class="group"><div class="ph aspect-[4/5] rounded-3xl grid place-items-center"><i data-lucide="user-round" class="w-16 h-16 text-mist"></i></div><p class="font-display font-bold text-xl mt-4">Bruno</p><p class="text-sm opacity-60">Fotógrafo</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFÓLIO (banco: tipo "portfolio") ===== -->
+    <section id="portfolio" class="max-w-7xl mx-auto px-5 py-28">
+      <div data-reveal class="mb-14">
+        <p class="text-periwinkle font-semibold tracking-widest uppercase text-xs mb-4">Portfólio</p>
+        <h2 data-e="portfolio_titulo" class="font-display font-bold text-4xl sm:text-5xl">Projetos selecionados</h2>
+      </div>
+      <div data-stagger data-lista="portfolio" class="grid md:grid-cols-2 gap-6">
+        <template>
+          <a data-i-href href="#portfolio" class="group relative rounded-3xl overflow-hidden h-80 md:h-[400px] block">
+            <div data-i-img="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700" class="ph absolute inset-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+            <div class="absolute bottom-0 p-7 text-white"><p data-i="subtitulo" class="text-xs uppercase tracking-widest text-mist"></p><h3 data-i="titulo" class="font-display font-bold text-3xl mt-2"></h3></div>
+          </a>
+        </template>
+        <a href="#portfolio" class="group relative rounded-3xl overflow-hidden h-80 md:h-[400px] block">
+          <img src="assets/banner.png" alt="Anubra Studio" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-0 p-7 text-white"><p class="text-xs uppercase tracking-widest text-mist">Ensaios · Direção criativa</p><h3 class="font-display font-bold text-3xl mt-2">Anubra Studio ↗</h3></div>
+        </a>
+        <div class="ph rounded-3xl h-80 md:h-[400px] grid place-items-center text-mist">Projeto em breve</div>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS (banco: tipo "depoimento") ===== -->
+    <section id="depoimentos" class="py-28 px-5">
+      <div class="max-w-7xl mx-auto px-6 sm:px-12 py-16 rounded-[2.5rem] bg-gradient-to-br from-royal to-navy text-white">
+        <p data-reveal class="text-mist font-semibold tracking-widest uppercase text-xs mb-4">Depoimentos</p>
+        <h2 data-reveal data-e="depoimentos_titulo" class="font-display font-bold text-4xl sm:text-5xl mb-14">Quem trabalhou com a gente</h2>
+        <div data-stagger data-lista="depoimento" class="grid md:grid-cols-3 gap-6">
+          <template>
+            <blockquote class="rounded-3xl p-7 bg-white/10 border border-white/15 backdrop-blur flex flex-col"><i data-lucide="quote" class="w-8 h-8 text-mist"></i><div class="flex gap-1 mt-4"><i data-lucide="star" class="w-4 h-4 fill-mist text-mist"></i><i data-lucide="star" class="w-4 h-4 fill-mist text-mist"></i><i data-lucide="star" class="w-4 h-4 fill-mist text-mist"></i><i data-lucide="star" class="w-4 h-4 fill-mist text-mist"></i><i data-lucide="star" class="w-4 h-4 fill-mist text-mist"></i></div><p data-i="descricao" class="opacity-90 mt-4 flex-1"></p><footer class="mt-6 flex items-center gap-3 text-sm"><span data-i-inicial class="w-10 h-10 rounded-full bg-periwinkle/30 grid place-items-center font-bold"></span><span><strong data-i="titulo"></strong><br /><span data-i="subtitulo" class="opacity-60"></span></span></footer></blockquote>
+          </template>
+          <!-- Depoimentos fictícios de exemplo -->
+          <blockquote class="rounded-3xl p-7 bg-white/10 border border-white/15 backdrop-blur flex flex-col"><i data-lucide="quote" class="w-8 h-8 text-mist"></i><p class="opacity-90 mt-4 flex-1">Ana Laura e Bruno deixaram tudo muito leve. Nunca achei que ficaria tão à vontade na frente da câmera, e as fotos ficaram incríveis!</p><footer class="mt-6 text-sm"><strong>Mariana Costa</strong><br /><span class="opacity-60">Ensaio individual</span></footer></blockquote>
+          <blockquote class="rounded-3xl p-7 bg-white/10 border border-white/15 backdrop-blur flex flex-col"><i data-lucide="quote" class="w-8 h-8 text-mist"></i><p class="opacity-90 mt-4 flex-1">Contratamos para o aniversário de 15 anos e eles registraram cada detalhe. Entrega rápida e edição impecável.</p><footer class="mt-6 text-sm"><strong>Carlos Mendes</strong><br /><span class="opacity-60">Evento — 15 anos</span></footer></blockquote>
+          <blockquote class="rounded-3xl p-7 bg-white/10 border border-white/15 backdrop-blur flex flex-col"><i data-lucide="quote" class="w-8 h-8 text-mist"></i><p class="opacity-90 mt-4 flex-1">As fotos dos nossos produtos ficaram profissionais de verdade. As vendas no Instagram aumentaram muito depois.</p><footer class="mt-6 text-sm"><strong>Juliana Rocha</strong><br /><span class="opacity-60">Loja Doce Encanto</span></footer></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATOS ===== -->
+    <section id="contatos" class="max-w-7xl mx-auto px-5 py-28 grid lg:grid-cols-2 gap-12">
+      <div data-reveal>
+        <p class="text-periwinkle font-semibold tracking-widest uppercase text-xs mb-4">Contatos</p>
+        <h2 class="font-display font-bold text-5xl sm:text-6xl leading-tight"><span data-e="contato_titulo">Quer um ensaio?</span> <span data-e="contato_destaque" class="text-royal dark:text-periwinkle">Bora conversar.</span></h2>
+        <div data-stagger class="mt-10 space-y-3 text-lg">
+          <a data-link="email" href="mailto:contato@agencia.com" class="flex items-center gap-3 hover:text-periwinkle transition"><i data-lucide="mail" class="w-6 h-6 text-periwinkle"></i><span data-e="email">contato@agencia.com</span></a>
+          <a data-link="whatsapp" href="https://wa.me/5511912345678" target="_blank" class="flex items-center gap-3 hover:text-periwinkle transition"><i data-lucide="message-circle" class="w-6 h-6 text-periwinkle"></i><span data-e="whatsapp">(11) 91234-5678</span></a>
+          <p class="flex items-center gap-3"><i data-lucide="map-pin" class="w-6 h-6 text-periwinkle"></i><span data-e="endereco">SENAI — Sua cidade</span></p>
+        </div>
+      </div>
+      <form data-reveal data-contato class="glass rounded-3xl p-6 sm:p-10 space-y-5">
+        <input name="nome" required maxlength="120" placeholder="Nome" class="w-full rounded-xl px-4 py-3 bg-white dark:bg-black/40 border border-mist/40" />
+        <input name="email" type="email" required maxlength="160" placeholder="E-mail" class="w-full rounded-xl px-4 py-3 bg-white dark:bg-black/40 border border-mist/40" />
+        <textarea name="mensagem" rows="4" maxlength="2000" placeholder="Conte sua ideia de ensaio" class="w-full rounded-xl px-4 py-3 bg-white dark:bg-black/40 border border-mist/40"></textarea>
+        <button class="w-full py-4 rounded-full bg-royal hover:bg-periwinkle text-white font-semibold transition">Enviar</button>
+        <p data-status class="text-sm text-center text-periwinkle" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="relative z-10 py-12">
+    <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-6">
+      <img data-e-src="logo" src="assets/logo.png" alt="Logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain" />
+      <p class="text-sm opacity-60">© <span data-year></span> <span data-e="nome">Agência</span> — Agência de Fotografia</p>
+      <div class="flex gap-3">
+        <a data-link="instagram" href="https://instagram.com/" target="_blank" aria-label="Instagram" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-royal hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+        <a data-link="whatsapp" href="https://wa.me/5511912345678" target="_blank" aria-label="WhatsApp" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-royal hover:text-white transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+        <a data-link="email" href="mailto:contato@agencia.com" aria-label="E-mail" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-royal hover:text-white transition"><i data-lucide="mail" class="w-5 h-5"></i></a>
+        <a data-link="telefone" href="tel:+5511912345678" aria-label="Telefone" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-royal hover:text-white transition"><i data-lucide="phone" class="w-5 h-5"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
