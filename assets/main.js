@@ -73,7 +73,7 @@ function renderLista(box, itens) {
       if (!item.imagem_url) return;
       const img = document.createElement('img');
       img.src = urlImagem(item.imagem_url); img.alt = item.titulo || ''; img.className = n.dataset.iImg;
-      img.loading = 'lazy'; img.style.objectPosition = posicaoImagem(item.imagem_url);
+      img.loading = 'lazy'; img.decoding = 'async'; img.style.objectPosition = posicaoImagem(item.imagem_url);
       n.replaceWith(img);
     });
     box.appendChild(el);
@@ -110,8 +110,13 @@ function animar() {
     gsap.to(el, { yPercent: 15, ease: 'none', scrollTrigger: { trigger: el, scrub: true } }));
   gsap.utils.toArray('[data-reveal]').forEach(el =>
     gsap.from(el, { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } }));
-  gsap.utils.toArray('[data-stagger]').forEach(grp =>
-    gsap.from(grp.children, { y: 40, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: grp, start: 'top 85%' } }));
+  // cada cartão anima quando chega na tela (antes os 35 do portfólio animavam juntos, o que travava a rolagem)
+  gsap.utils.toArray('[data-stagger]').forEach(grp => {
+    const filhos = [...grp.children].filter(f => f.tagName !== 'TEMPLATE');
+    gsap.set(filhos, { y: 40, opacity: 0 });
+    ScrollTrigger.batch(filhos, { start: 'top 92%', once: true,
+      onEnter: lote => gsap.to(lote, { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out', clearProps: 'transform,opacity' }) });
+  });
   document.querySelectorAll('[data-count]').forEach(el => {
     const obj = { v: 0 };
     gsap.to(obj, { v: +el.dataset.count, duration: 2, ease: 'power2.out',
