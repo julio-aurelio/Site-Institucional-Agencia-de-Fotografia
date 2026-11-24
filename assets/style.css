@@ -35,4 +35,29 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: rgb(var
 .hover-lift { transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
 .hover-lift:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgb(var(--royal) / .25); }
 
+/* ===== Mural de fotos do portfólio (quadro de grade com polaroids) ===== */
+.mural { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: #fff; overflow-y: auto; overscroll-behavior: contain; }
+.mural::backdrop { background: rgba(3, 5, 15, .85); backdrop-filter: blur(10px); }
+.mural-quadro { max-width: 80rem; margin: 0 auto; padding: 0 1.25rem 3rem; }
+.mural-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 2.75rem 1.5rem; padding: 2.75rem 1.5rem 3rem;
+  border: 3px solid #161616; border-radius: 6px; background-color: #f3f1ec;
+  background-image: linear-gradient(#262626 1.5px, transparent 1.5px), linear-gradient(90deg, #262626 1.5px, transparent 1.5px);
+  background-size: 46px 46px; box-shadow: 0 40px 90px rgba(0, 0, 0, .55); }
+@media (min-width: 640px) { .mural-grade { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 3.5rem 2.25rem; padding: 3.5rem 2.5rem 4rem; } }
+.polaroid { position: relative; display: block; background: #fff; padding: 9px 9px 34px; cursor: zoom-in; transform-origin: 50% 0;
+  rotate: var(--giro, 0deg); box-shadow: 0 10px 22px rgba(0, 0, 0, .28); transition: rotate .45s cubic-bezier(.2,.8,.2,1), scale .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s; }
+.polaroid:nth-child(3n+2) { margin-top: 1.75rem; }
+.polaroid:nth-child(4n+3) { margin-top: -.5rem; }
+.polaroid:hover, .polaroid:focus-visible { rotate: 0deg; scale: 1.08; z-index: 2; box-shadow: 0 26px 50px rgba(0, 0, 0, .35); outline: none; }
+.polaroid:focus-visible { box-shadow: 0 0 0 4px rgb(var(--periwinkle)), 0 26px 50px rgba(0, 0, 0, .35); }
+.polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: #e5e5e5; }
+.polaroid span { position: absolute; inset: auto 0 9px; text-align: center; font: 600 12px 'Syne', sans-serif; letter-spacing: .15em; color: #666; }
+.polaroid::before { /* prendedor de madeira */
+  content: ''; position: absolute; z-index: 1; top: -15px; left: 50%; width: 12px; height: 30px; margin-left: -6px; border-radius: 3px;
+  background: linear-gradient(90deg, #b88a5a, #e3c095 50%, #b88a5a); box-shadow: 0 3px 5px rgba(0, 0, 0, .3); }
+.mural-zoom { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 4.5rem 4.5rem 3rem; background: rgba(0, 0, 0, .93); }
+.mural-zoom[hidden] { display: none; }
+.mural-zoom img { max-width: 100%; max-height: calc(100vh - 8rem); object-fit: contain; background: #fff; padding: 10px 10px 42px; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); touch-action: pan-y; }
+@media (max-width: 639px) { .mural-zoom { padding: 4.5rem .75rem 5.5rem; } .mural-zoom [data-zoom-passo] { top: auto; bottom: 1.25rem; transform: none; } }
+
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

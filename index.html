@@ -5,25 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agência — Agência de Fotografia</title>
   <meta name="description" content="Agência de fotografia: ensaios, eventos, produtos e direção criativa." />
-  <link rel="icon" href="assets/logo.png" />
+  <link rel="icon" href="assets/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // As cores vêm das variáveis CSS (style.css) para o painel admin poder trocar
-    const cor = v => `rgb(var(--${v}) / <alpha-value>)`;
-    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
-      royal: cor('royal'), navy: cor('navy'), periwinkle: cor('periwinkle'), mist: cor('mist'), ice: cor('ice')
-    } } } };
-  </script>
+  <!-- Tailwind já compilado (tailwind.config.js); antes era o CDN, que montava o CSS no navegador a cada visita -->
+  <link rel="stylesheet" href="assets/tailwind.css" />
   <link rel="stylesheet" href="assets/style.css" />
+  <script>if (localStorage.getItem('tema') === 'light') document.documentElement.classList.remove('dark');</script>
 </head>
 <body class="bg-ice text-navy dark:bg-black dark:text-ice overflow-x-hidden">
   <div data-glow></div>
 
   <header class="fixed inset-x-0 top-0 z-50">
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
-      <a href="#home" aria-label="Início"><img data-e-src="logo" src="assets/logo.png" alt="Logo" class="h-11 w-11 rounded-xl bg-white p-1 object-contain" /></a>
+      <a href="#home" aria-label="Início"><img data-e-src="logo" src="assets/logo.webp" alt="Logo" class="h-11 w-11 rounded-xl bg-white p-1 object-contain" /></a>
       <ul class="hidden md:flex gap-8 text-sm font-medium">
         <li><a href="#servicos" class="hover:text-periwinkle transition">Serviços</a></li>
         <li><a href="#equipe" class="hover:text-periwinkle transition">Quem somos</a></li>
@@ -115,7 +110,7 @@
           </a>
         </template>
         <a href="#portfolio" class="group relative rounded-3xl overflow-hidden h-80 md:h-[400px] block">
-          <img src="assets/banner.png" alt="Anubra Studio" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700" />
+          <img src="assets/banner.webp" alt="Anubra Studio" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
           <div class="absolute bottom-0 p-7 text-white"><p class="text-xs uppercase tracking-widest text-mist">Ensaios · Direção criativa</p><h3 class="font-display font-bold text-3xl mt-2">Anubra Studio ↗</h3></div>
         </a>
@@ -163,7 +158,7 @@
 
   <footer class="relative z-10 py-12">
     <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-6">
-      <img data-e-src="logo" src="assets/logo.png" alt="Logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain" />
+      <img data-e-src="logo" src="assets/logo.webp" alt="Logo" class="h-12 w-12 rounded-xl bg-white p-1 object-contain" />
       <p class="text-sm opacity-60">© <span data-year></span> <span data-e="nome">Agência</span> — Agência de Fotografia</p>
       <div class="flex gap-3">
         <a data-link="instagram" href="https://instagram.com/" target="_blank" aria-label="Instagram" class="w-10 h-10 grid place-items-center rounded-full glass hover:bg-royal hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
@@ -173,6 +168,29 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== MURAL DE FOTOS DO PORTFÓLIO (abre ao clicar num projeto que tem galeria) ===== -->
+  <dialog id="mural" class="mural" aria-labelledby="mural-titulo" data-lenis-prevent>
+    <div class="mural-quadro">
+      <div class="sticky top-0 z-[5] -mx-5 px-5 py-4 mb-6 flex items-center gap-4 bg-black/60 backdrop-blur-xl rounded-b-2xl">
+        <div class="flex-1 min-w-0">
+          <p data-mural-sub class="text-xs uppercase tracking-widest text-mist"></p>
+          <h2 id="mural-titulo" data-mural-titulo class="font-display font-bold text-2xl sm:text-4xl truncate"></h2>
+        </div>
+        <span data-mural-total class="hidden sm:inline text-sm opacity-60"></span>
+        <a data-mural-link target="_blank" rel="noopener" class="hidden px-4 py-2 rounded-full border border-white/25 hover:bg-white hover:text-black text-sm font-semibold transition">Ver projeto ↗</a>
+        <button type="button" data-mural-fechar aria-label="Fechar mural" class="h-11 w-11 shrink-0 grid place-items-center rounded-full bg-white/10 hover:bg-white hover:text-black transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div data-mural-fotos class="mural-grade"></div>
+    </div>
+    <div data-mural-zoom class="mural-zoom" hidden>
+      <img data-zoom-img alt="" />
+      <p data-zoom-contador class="absolute top-6 left-1/2 -translate-x-1/2 text-sm text-white/70 font-display tracking-widest"></p>
+      <button type="button" data-zoom-fechar aria-label="Voltar ao mural" class="absolute top-4 right-4 h-11 w-11 grid place-items-center rounded-full bg-white/10 hover:bg-white hover:text-black transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <button type="button" data-zoom-passo="-1" aria-label="Foto anterior" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 h-12 w-12 grid place-items-center rounded-full bg-white/10 hover:bg-white hover:text-black transition"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+      <button type="button" data-zoom-passo="1" aria-label="Próxima foto" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 h-12 w-12 grid place-items-center rounded-full bg-white/10 hover:bg-white hover:text-black transition"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+    </div>
+  </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

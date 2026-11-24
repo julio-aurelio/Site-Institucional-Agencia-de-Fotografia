@@ -68,6 +68,14 @@ def erro_supabase(e):
     return jsonify(erro=str(e)), 502
 
 
+@app.after_request
+def cache_na_vercel(resp):
+    # a CDN da Vercel guarda o conteúdo por 30 s e serve a cópia antiga enquanto atualiza: sem esperar a função "acordar"
+    if request.method == "GET" and resp.status_code == 200 and request.path.startswith("/api/"):
+        resp.headers["Cache-Control"] = "public, max-age=0, s-maxage=30, stale-while-revalidate=86400"
+    return resp
+
+
 def texto(valor, limite):
     return str(valor or "").strip()[:limite]
 

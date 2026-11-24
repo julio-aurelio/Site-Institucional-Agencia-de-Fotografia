@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/logo.png" width="110" /></p>
+<p align="center"><img src="assets/logo.webp" width="110" /></p>
 
 <h1 align="center">📷 Site Institucional — Agência de Fotografia</h1>
 
@@ -37,7 +37,7 @@ Este projeto corresponde à **Tarefa 2** do quadro Scrum.
 | Tecnologia | Uso |
 |---|---|
 | **HTML5** | Estrutura semântica das páginas |
-| **Tailwind CSS** (CDN) | Layout, responsividade e tema claro/escuro |
+| **Tailwind CSS** (compilado em `assets/tailwind.css`) | Layout, responsividade e tema claro/escuro. Mudou classes no HTML/JS? Rode `npx tailwindcss@3 -i assets/tailwind.src.css -o assets/tailwind.css --minify` |
 | **CSS3** | Efeitos extras (vidro, brilho do cursor, placeholders) |
 | **JavaScript** | Tema, menu mobile, formulário e animações |
 | **GSAP + ScrollTrigger** | Animações de entrada, parallax, contadores e marquee |
