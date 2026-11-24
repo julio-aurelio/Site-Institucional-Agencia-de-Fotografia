@@ -70,9 +70,9 @@ def erro_supabase(e):
 
 @app.after_request
 def cache_na_vercel(resp):
-    # a CDN da Vercel guarda o conteúdo por 30 s e serve a cópia antiga enquanto atualiza: sem esperar a função "acordar"
+    # a CDN da Vercel guarda o conteúdo por 30 s (e até 1 min a mais enquanto atualiza): o que o painel publica aparece rápido
     if request.method == "GET" and resp.status_code == 200 and request.path.startswith("/api/"):
-        resp.headers["Cache-Control"] = "public, max-age=0, s-maxage=30, stale-while-revalidate=86400"
+        resp.headers["Cache-Control"] = "public, max-age=0, s-maxage=30, stale-while-revalidate=60"
     return resp
 
 
